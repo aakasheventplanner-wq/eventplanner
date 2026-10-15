@@ -1,0 +1,1748 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aakasheventplanner - Luxury Wedding & Event Planner in Delhi NCR</title>
+    <meta name="description"
+        content="Aakasheventplanner - Luxury Wedding & Event Planner in Delhi NCR. From intimate gatherings to grand celebrations, we create events that leave lasting memories.">
+    <meta name="keywords"
+        content="Wedding Planner Delhi NCR, Event Planner Faridabad, Luxury Wedding Decoration, Birthday Planner, Haldi Mehndi Setup">
+
+    <!-- Open Graph / Social Tags -->
+    <meta property="og:title" content="Aakasheventplanner - Luxury Wedding & Event Planner">
+    <meta property="og:description"
+        content="We Plan, You Celebrate. Premium wedding and event planning services in Delhi NCR.">
+    <meta property="og:type" content="website">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            200: '#fecdd3',
+                            300: '#fda4af',
+                            400: '#fb7185',
+                            500: '#f43f5e',
+                            600: '#e11d48', // Primary Rose Gold Accent
+                            700: '#be185d', // Deep Pink
+                            800: '#9f1239',
+                            900: '#881337',
+                        },
+                        gold: {
+                            300: '#fde047',
+                            400: '#facc15',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                            700: '#a16207',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'Georgia', 'serif'],
+                        script: ['Dancing Script', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- External Libraries (GSAP, ScrollTrigger, Three.js, Swiper) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Custom CSS Styling -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background-color: #fffdfd;
+            color: #1f2937;
+        }
+
+        .font-serif-heading {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .font-handwriting {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        /* Glassmorphism elements */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(225, 29, 72, 0.12);
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(225, 29, 72, 0.1);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #fff0f3;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #e11d48;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #be185d;
+        }
+
+        /* Canvas background overlay styling */
+        #three-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Pulse glow animation */
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 15px rgba(225, 29, 72, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 0 30px rgba(225, 29, 72, 0.8);
+            }
+        }
+
+        .animate-pulse-glow {
+            animation: pulse-glow 3s infinite;
+        }
+
+        @keyframes float-slow {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-12px) rotate(2deg);
+            }
+        }
+
+        .animate-float {
+            animation: float-slow 5s ease-in-out infinite;
+        }
+
+        /* Magnetic button visual transition */
+        .magnetic-btn {
+            transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* Preloader styles */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            background: #111827;
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        .preloader-progress-bar {
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-brand-600 selection:text-white">
+
+    <!-- PRELOADER -->
+    <div id="preloader" class="text-white">
+        <div class="relative flex flex-col items-center">
+            <!-- Brand Logo Animated Icon -->
+            <div class="w-20 h-20 mb-6 relative flex items-center justify-center">
+                <div class="absolute inset-0 border-4 border-brand-600/30 rounded-full animate-ping"></div>
+                <div
+                    class="w-16 h-16 bg-gradient-to-tr from-brand-600 to-pink-500 rounded-full flex items-center justify-center shadow-lg shadow-brand-600/50">
+                    <i class="fa-solid fa-gem text-3xl text-white"></i>
+                </div>
+            </div>
+            <h1 class="font-serif-heading text-2xl md:text-3xl font-bold tracking-wide text-center">
+                Aakasheventplanner
+            </h1>
+            <p class="font-handwriting text-brand-400 text-lg mb-8">We Plan, You Celebrate</p>
+
+            <!-- Progress Bar -->
+            <div class="w-64 h-1.5 bg-gray-800 rounded-full overflow-hidden mb-3 border border-gray-700">
+                <div id="preloader-bar"
+                    class="preloader-progress-bar h-full bg-gradient-to-r from-brand-500 to-amber-400"></div>
+            </div>
+            <div id="preloader-percent" class="font-mono text-sm tracking-widest text-brand-300">0%</div>
+        </div>
+    </div>
+
+    <!-- STICKY HEADER / NAVIGATION -->
+    <header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo Section -->
+            <a href="#home" class="flex items-center gap-3 group">
+                <div
+                    class="w-11 h-11 rounded-full bg-gradient-to-br from-brand-600 to-pink-600 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-crown text-xl"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span
+                        class="font-serif-heading font-bold text-lg md:text-xl text-gray-900 leading-none group-hover:text-brand-600 transition-colors">
+                        Aakasheventplanner
+                    </span>
+                    <span class="font-handwriting text-xs text-brand-600 font-semibold tracking-wider">
+                        We Plan, You Celebrate
+                    </span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden lg:flex items-center space-x-8 text-sm font-semibold text-gray-700">
+                <a href="#home"
+                    class="hover:text-brand-600 transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-brand-600 hover:after:w-full after:transition-all">HOME</a>
+                <a href="#about"
+                    class="hover:text-brand-600 transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-brand-600 hover:after:w-full after:transition-all">ABOUT
+                    US</a>
+                <a href="#services"
+                    class="hover:text-brand-600 transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-brand-600 hover:after:w-full after:transition-all">SERVICES</a>
+                <a href="#gallery"
+                    class="hover:text-brand-600 transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-brand-600 hover:after:w-full after:transition-all">GALLERY</a>
+                <a href="#packages"
+                    class="hover:text-brand-600 transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-brand-600 hover:after:w-full after:transition-all">PACKAGES</a>
+                <a href="#reviews"
+                    class="hover:text-brand-600 transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-brand-600 hover:after:w-full after:transition-all">REVIEWS</a>
+                <a href="#faq"
+                    class="hover:text-brand-600 transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-brand-600 hover:after:w-full after:transition-all">FAQ</a>
+            </nav>
+
+            <!-- Phone Pill CTA + Booking Button -->
+            <div class="hidden sm:flex items-center space-x-3">
+                <a href="tel:+918860721220"
+                    class="flex items-center gap-2 px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white font-medium rounded-full text-xs md:text-sm shadow-md transition-all hover:shadow-lg hover:-translate-y-0.5 magnetic-btn">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>+91 88607 21220</span>
+                </a>
+                <button onclick="openBookingModal()"
+                    class="px-4 py-2 border-2 border-brand-600 text-brand-600 hover:bg-brand-600 hover:text-white font-semibold rounded-full text-xs md:text-sm transition-all shadow-sm hover:shadow-md">
+                    Book Event
+                </button>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="lg:hidden p-2 text-gray-700 hover:text-brand-600 focus:outline-none"
+                aria-label="Toggle Navigation">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-gray-100 px-6 py-6 transition-all">
+            <div class="flex flex-col space-y-4 font-semibold text-gray-800">
+                <a href="#home" class="mobile-nav-link hover:text-brand-600">HOME</a>
+                <a href="#about" class="mobile-nav-link hover:text-brand-600">ABOUT US</a>
+                <a href="#services" class="mobile-nav-link hover:text-brand-600">SERVICES</a>
+                <a href="#gallery" class="mobile-nav-link hover:text-brand-600">GALLERY</a>
+                <a href="#packages" class="mobile-nav-link hover:text-brand-600">PACKAGES</a>
+                <a href="#reviews" class="mobile-nav-link hover:text-brand-600">REVIEWS</a>
+                <a href="#faq" class="mobile-nav-link hover:text-brand-600">FAQ</a>
+                <div class="pt-4 border-t border-gray-100 flex flex-col gap-3">
+                    <a href="tel:+918860721220"
+                        class="w-full text-center py-2.5 bg-brand-600 text-white rounded-full font-bold shadow-md">
+                        <i class="fa-solid fa-phone mr-2"></i> +91 88607 21220
+                    </a>
+                    <button onclick="openBookingModal(); closeMobileMenu();"
+                        class="w-full text-center py-2.5 border-2 border-brand-600 text-brand-600 rounded-full font-bold">
+                        Book Your Event
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="relative">
+        <!-- HERO SECTION -->
+        <section id="home"
+            class="relative min-h-screen pt-28 pb-16 lg:pt-36 lg:pb-24 flex items-center justify-center overflow-hidden bg-gradient-to-b from-rose-50/70 via-pink-50/30 to-white">
+            <!-- Three.js 3D Interactive Canvas Background -->
+            <canvas id="three-canvas"></canvas>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+
+                    <!-- Left Hero Content -->
+                    <div class="lg:col-span-7 text-center lg:text-left space-y-6 hero-text-container">
+                        <!-- Top Ribbon Tag -->
+                        <div
+                            class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-100/80 border border-brand-200 text-brand-700 text-xs md:text-sm font-semibold tracking-wide uppercase shadow-sm">
+                            <i class="fa-solid fa-heart text-brand-600 text-xs"></i>
+                            <span>MAKE EVERY MOMENT SPECIAL</span>
+                            <i class="fa-solid fa-heart text-brand-600 text-xs"></i>
+                        </div>
+
+                        <!-- Main Headline -->
+                        <h1
+                            class="font-serif-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight">
+                            <span class="block text-brand-600">Aakasheventplanner</span>
+                            Luxury Wedding & Event Planner <br class="hidden sm:inline" />
+                            <span
+                                class="font-handwriting text-brand-700 text-4xl sm:text-5xl lg:text-6xl font-normal block mt-1">in
+                                Delhi NCR</span>
+                        </h1>
+
+                        <!-- Supporting Paragraph -->
+                        <p
+                            class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light">
+                            From intimate gatherings to grand celebrations, we design, manage, and craft ethereal event
+                            setups that leave everlasting memories.
+                        </p>
+
+                        <!-- Feature Badges Pill Grid -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 pb-4">
+                            <div
+                                class="flex items-center justify-center lg:justify-start gap-2 p-2 rounded-xl bg-white/70 border border-pink-100 shadow-sm text-xs font-medium text-gray-800">
+                                <i class="fa-solid fa-palette text-brand-600"></i>
+                                <span>Creative Designs</span>
+                            </div>
+                            <div
+                                class="flex items-center justify-center lg:justify-start gap-2 p-2 rounded-xl bg-white/70 border border-pink-100 shadow-sm text-xs font-medium text-gray-800">
+                                <i class="fa-solid fa-wand-magic-sparkles text-brand-600"></i>
+                                <span>Premium Decor</span>
+                            </div>
+                            <div
+                                class="flex items-center justify-center lg:justify-start gap-2 p-2 rounded-xl bg-white/70 border border-pink-100 shadow-sm text-xs font-medium text-gray-800">
+                                <i class="fa-solid fa-user-tie text-brand-600"></i>
+                                <span>Expert Team</span>
+                            </div>
+                            <div
+                                class="flex items-center justify-center lg:justify-start gap-2 p-2 rounded-xl bg-white/70 border border-pink-100 shadow-sm text-xs font-medium text-gray-800">
+                                <i class="fa-solid fa-clock text-brand-600"></i>
+                                <span>On-Time Delivery</span>
+                            </div>
+                        </div>
+
+                        <!-- CTA Action Button Group -->
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                            <a href="tel:+918860721220"
+                                class="w-full sm:w-auto px-7 py-3.5 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-full shadow-lg shadow-brand-600/30 flex items-center justify-center gap-2 transition-all hover:scale-105 magnetic-btn">
+                                <i class="fa-solid fa-phone"></i>
+                                <span>Call Now</span>
+                            </a>
+                            <a href="https://wa.me/918860721220?text=Hi%20Aakasheventplanner,%20I%20would%20like%20to%20inquire%20about%20event%20planning%20services."
+                                target="_blank" rel="noopener"
+                                class="w-full sm:w-auto px-7 py-3.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-full shadow-lg shadow-emerald-500/30 flex items-center justify-center gap-2 transition-all hover:scale-105 magnetic-btn">
+                                <i class="fa-brands fa-whatsapp text-lg"></i>
+                                <span>WhatsApp Now</span>
+                            </a>
+                            <button onclick="openBookingModal()"
+                                class="w-full sm:w-auto px-7 py-3.5 border-2 border-brand-600 bg-white hover:bg-brand-50 text-brand-700 font-bold rounded-full shadow-md flex items-center justify-center gap-2 transition-all hover:scale-105">
+                                <i class="fa-solid fa-calendar-check"></i>
+                                <span>Book Your Event</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Right Hero Showcase Image / Stage Card -->
+                    <div class="lg:col-span-5 relative hero-visual-container">
+                        <div class="relative mx-auto max-w-md lg:max-w-none">
+                            <!-- Background Glowing Accent -->
+                            <div
+                                class="absolute -inset-1 bg-gradient-to-r from-brand-600 to-amber-500 rounded-3xl blur-2xl opacity-30 animate-pulse-glow">
+                            </div>
+
+                            <!-- Main Frame -->
+                            <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white">
+                                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80"
+                                    alt="Luxury Stage Wedding Decor"
+                                    class="w-full h-[420px] object-cover hover:scale-105 transition-transform duration-700">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex flex-col justify-end p-6 text-white">
+                                    <span class="text-xs uppercase tracking-widest text-amber-300 font-semibold">Delhi
+                                        NCR Premier Setup</span>
+                                    <h3 class="font-serif-heading text-xl font-bold">Grand Royal Wedding Floral Stage
+                                    </h3>
+                                    <div class="flex items-center gap-1 text-amber-400 mt-1 text-sm">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <span class="text-xs text-gray-200 ml-1">(5.0 Rating)</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Floating Floating Visual Element Badge -->
+                            <div
+                                class="absolute -bottom-6 -left-6 bg-white rounded-2xl p-4 shadow-xl border border-pink-100 flex items-center gap-3 animate-float">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-brand-100 flex items-center justify-center text-brand-600 text-xl font-bold">
+                                    <i class="fa-solid fa-award"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-gray-900 text-sm">Top Rated Planner</div>
+                                    <div class="text-xs text-gray-500">100% Satisfaction Guaranteed</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- TRUST & PROOF SECTION (Animated Counters & Stats) -->
+        <section class="py-12 bg-white border-y border-pink-100/60 relative z-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center" id="stats-container">
+
+                    <div class="p-4 rounded-2xl hover:bg-rose-50/50 transition-colors">
+                        <div
+                            class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-600 font-serif-heading flex justify-center items-center">
+                            <span class="counter" data-target="850">0</span>+
+                        </div>
+                        <p class="text-xs sm:text-sm text-gray-600 mt-2 font-medium">Grand Events Completed</p>
+                    </div>
+
+                    <div class="p-4 rounded-2xl hover:bg-rose-50/50 transition-colors">
+                        <div
+                            class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-600 font-serif-heading flex justify-center items-center">
+                            <span class="counter" data-target="100">0</span>%
+                        </div>
+                        <p class="text-xs sm:text-sm text-gray-600 mt-2 font-medium">Customer Satisfaction</p>
+                    </div>
+
+                    <div class="p-4 rounded-2xl hover:bg-rose-50/50 transition-colors">
+                        <div
+                            class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-600 font-serif-heading flex justify-center items-center">
+                            <span class="counter" data-target="12">0</span>+
+                        </div>
+                        <p class="text-xs sm:text-sm text-gray-600 mt-2 font-medium">Years of Experience</p>
+                    </div>
+
+                    <div class="p-4 rounded-2xl hover:bg-rose-50/50 transition-colors">
+                        <div
+                            class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-600 font-serif-heading flex justify-center items-center">
+                            <span class="counter" data-target="50">0</span>+
+                        </div>
+                        <p class="text-xs sm:text-sm text-gray-600 mt-2 font-medium">Creative Designers & Decorators</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY CHOOSE US -->
+        <section id="about" class="py-20 bg-rose-50/30 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 section-title">
+                    <span class="text-brand-600 font-semibold uppercase tracking-wider text-xs sm:text-sm block mb-1">
+                        WHY CHOOSE US
+                    </span>
+                    <h2 class="font-serif-heading text-3xl sm:text-4xl font-bold text-gray-900">
+                        We Make Your <span class="text-brand-600">Dreams Come True</span>
+                    </h2>
+                    <div class="w-16 h-1 bg-brand-600 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- Card 1 -->
+                    <div
+                        class="glass-card p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-pink-100 group">
+                        <div
+                            class="w-14 h-14 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors shadow-sm">
+                            <i class="fa-solid fa-crown"></i>
+                        </div>
+                        <h3 class="font-serif-heading text-xl font-bold text-gray-900 mb-2">Premium Quality Decoration
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            We use lush real flowers, designer drapes, crystal chandeliers, and royal seating for a
+                            majestic ambiance.
+                        </p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div
+                        class="glass-card p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-pink-100 group">
+                        <div
+                            class="w-14 h-14 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors shadow-sm">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+                        <h3 class="font-serif-heading text-xl font-bold text-gray-900 mb-2">Unique & Creative Themes
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Tailor-made decor concepts customized to your personal vision, color palette, and wedding
+                            aesthetic.
+                        </p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div
+                        class="glass-card p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-pink-100 group">
+                        <div
+                            class="w-14 h-14 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors shadow-sm">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <h3 class="font-serif-heading text-xl font-bold text-gray-900 mb-2">Expert & Friendly Team</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Experienced event coordinators who handle catering, entry setups, audio-visuals, and stage
+                            details flawlessly.
+                        </p>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div
+                        class="glass-card p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-pink-100 group">
+                        <div
+                            class="w-14 h-14 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors shadow-sm">
+                            <i class="fa-solid fa-tags"></i>
+                        </div>
+                        <h3 class="font-serif-heading text-xl font-bold text-gray-900 mb-2">Affordable Packages</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Transparent pricing with zero hidden fees. High-end luxury decor tailored to fit your
+                            specific budget.
+                        </p>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div
+                        class="glass-card p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-pink-100 group">
+                        <div
+                            class="w-14 h-14 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors shadow-sm">
+                            <i class="fa-solid fa-clock-check"></i>
+                        </div>
+                        <h3 class="font-serif-heading text-xl font-bold text-gray-900 mb-2">On-Time Execution</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Punctual setup delivery ensures your venue is pristine and ready hours before guests arrive.
+                        </p>
+                    </div>
+
+                    <!-- Card 6 -->
+                    <div
+                        class="glass-card p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-pink-100 group">
+                        <div
+                            class="w-14 h-14 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors shadow-sm">
+                            <i class="fa-solid fa-face-smile"></i>
+                        </div>
+                        <h3 class="font-serif-heading text-xl font-bold text-gray-900 mb-2">100% Satisfaction</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Hundreds of happy families across Delhi, Gurgaon, Noida, and Faridabad trust us for their
+                            lifetime memories.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES / FEATURES -->
+        <section id="services" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 section-title">
+                    <span class="text-brand-600 font-semibold uppercase tracking-wider text-xs sm:text-sm block mb-1">
+                        OUR SERVICES
+                    </span>
+                    <h2 class="font-serif-heading text-3xl sm:text-4xl font-bold text-gray-900">
+                        We Provide The <span class="text-brand-600">Best Services</span>
+                    </h2>
+                    <p class="text-gray-600 text-sm sm:text-base mt-2">Comprehensive end-to-end management for all your
+                        grand celebrations</p>
+                    <div class="w-16 h-1 bg-brand-600 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- Service 1 -->
+                    <div
+                        class="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1 group">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-rose-100 text-brand-600 flex items-center justify-center text-xl mb-4 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-ring"></i>
+                        </div>
+                        <h3 class="font-serif-heading text-lg font-bold text-gray-900 mb-2">Wedding Planning</h3>
+                        <p class="text-gray-600 text-xs sm:text-sm leading-relaxed mb-4">
+                            Full wedding planning, mandap design, stage setups, hospitality management, and floral
+                            decor.
+                        </p>
+                        <button onclick="openBookingModal('Wedding Planning')"
+                            class="text-xs font-bold text-brand-600 hover:text-brand-800 inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                            Book Service <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div
+                        class="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1 group">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-rose-100 text-brand-600 flex items-center justify-center text-xl mb-4 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-cake-candles"></i>
+                        </div>
+                        <h3 class="font-serif-heading text-lg font-bold text-gray-900 mb-2">Birthday Decoration</h3>
+                        <p class="text-gray-600 text-xs sm:text-sm leading-relaxed mb-4">
+                            Creative birthday themes, balloon arches, kids party setups, backdrops, and milestone
+                            birthdays.
+                        </p>
+                        <button onclick="openBookingModal('Birthday Decoration')"
+                            class="text-xs font-bold text-brand-600 hover:text-brand-800 inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                            Book Service <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div
+                        class="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1 group">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-rose-100 text-brand-600 flex items-center justify-center text-xl mb-4 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-gem"></i>
+                        </div>
+                        <h3 class="font-serif-heading text-lg font-bold text-gray-900 mb-2">Engagement & Anniversary
+                        </h3>
+                        <p class="text-gray-600 text-xs sm:text-sm leading-relaxed mb-4">
+                            Beautiful romantic ring ceremony setups, lighting installations, and memorable anniversary
+                            themes.
+                        </p>
+                        <button onclick="openBookingModal('Engagement & Anniversary')"
+                            class="text-xs font-bold text-brand-600 hover:text-brand-800 inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                            Book Service <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Service 4 -->
+                    <div
+                        class="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1 group">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-rose-100 text-brand-600 flex items-center justify-center text-xl mb-4 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-briefcase"></i>
+                        </div>
+                        <h3 class="font-serif-heading text-lg font-bold text-gray-900 mb-2">Corporate Events</h3>
+                        <p class="text-gray-600 text-xs sm:text-sm leading-relaxed mb-4">
+                            Professional corporate galas, product launches, annual meetings, stage setup, and branding.
+                        </p>
+                        <button onclick="openBookingModal('Corporate Events')"
+                            class="text-xs font-bold text-brand-600 hover:text-brand-800 inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                            Book Service <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Service 5 -->
+                    <div
+                        class="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1 group">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-rose-100 text-brand-600 flex items-center justify-center text-xl mb-4 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-sun"></i>
+                        </div>
+                        <h3 class="font-serif-heading text-lg font-bold text-gray-900 mb-2">Haldi Ceremony</h3>
+                        <p class="text-gray-600 text-xs sm:text-sm leading-relaxed mb-4">
+                            Traditional and colorful yellow floral marigold decor, brass urns, and vibrant seating
+                            setups.
+                        </p>
+                        <button onclick="openBookingModal('Haldi Ceremony')"
+                            class="text-xs font-bold text-brand-600 hover:text-brand-800 inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                            Book Service <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Service 6 -->
+                    <div
+                        class="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1 group">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-rose-100 text-brand-600 flex items-center justify-center text-xl mb-4 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-hand-sparkles"></i>
+                        </div>
+                        <h3 class="font-serif-heading text-lg font-bold text-gray-900 mb-2">Mehndi Decoration</h3>
+                        <p class="text-gray-600 text-xs sm:text-sm leading-relaxed mb-4">
+                            Vibrant green & pink themed mehndi stage arrangements, jhula setups, and aesthetic
+                            photobooths.
+                        </p>
+                        <button onclick="openBookingModal('Mehndi Decoration')"
+                            class="text-xs font-bold text-brand-600 hover:text-brand-800 inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                            Book Service <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="text-center mt-12">
+                    <button onclick="openBookingModal()"
+                        class="px-8 py-3.5 bg-brand-600 text-white font-bold rounded-full shadow-lg hover:bg-brand-700 transition-all">
+                        View All Services & Plan Your Event <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PORTFOLIO / GALLERY SECTION -->
+        <section id="gallery" class="py-20 bg-rose-50/40">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12 section-title">
+                    <span class="text-brand-600 font-semibold uppercase tracking-wider text-xs sm:text-sm block mb-1">
+                        OUR GALLERY
+                    </span>
+                    <h2 class="font-serif-heading text-3xl sm:text-4xl font-bold text-gray-900">
+                        A Glimpse Of <span class="text-brand-600">Our Work</span>
+                    </h2>
+                    <div class="w-16 h-1 bg-brand-600 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <!-- Category Filtering Buttons -->
+                <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10">
+                    <button
+                        class="gallery-filter-btn active px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-brand-600 text-white shadow-md"
+                        data-filter="all">All Projects</button>
+                    <button
+                        class="gallery-filter-btn px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-white text-gray-700 hover:bg-rose-100 border border-gray-200"
+                        data-filter="wedding">Weddings</button>
+                    <button
+                        class="gallery-filter-btn px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-white text-gray-700 hover:bg-rose-100 border border-gray-200"
+                        data-filter="haldi">Haldi & Mehndi</button>
+                    <button
+                        class="gallery-filter-btn px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-white text-gray-700 hover:bg-rose-100 border border-gray-200"
+                        data-filter="birthday">Birthdays</button>
+                    <button
+                        class="gallery-filter-btn px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-white text-gray-700 hover:bg-rose-100 border border-gray-200"
+                        data-filter="decor">Stage Decor</button>
+                </div>
+
+                <!-- Gallery Grid -->
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery-grid">
+
+                    <!-- Item 1 -->
+                    <div
+                        class="gallery-item wedding group relative rounded-2xl overflow-hidden shadow-md bg-white border border-pink-100">
+                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80"
+                            alt="Royal Wedding Mandap"
+                            class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                            <span class="text-xs font-semibold uppercase text-brand-300">Wedding</span>
+                            <h4 class="font-serif-heading font-bold text-lg">Royal Wedding Mandap Setup</h4>
+                            <p class="text-xs text-gray-200 mt-1">Farmhouse Wedding in Chattarpur</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div
+                        class="gallery-item haldi group relative rounded-2xl overflow-hidden shadow-md bg-white border border-pink-100">
+                        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80"
+                            alt="Haldi Floral Setup"
+                            class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                            <span class="text-xs font-semibold uppercase text-brand-300">Haldi & Mehndi</span>
+                            <h4 class="font-serif-heading font-bold text-lg">Marigold Haldi Celebration</h4>
+                            <p class="text-xs text-gray-200 mt-1">Vibrant Floral Setup in Faridabad</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div
+                        class="gallery-item birthday group relative rounded-2xl overflow-hidden shadow-md bg-white border border-pink-100">
+                        <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=800&q=80"
+                            alt="1st Birthday Theme"
+                            class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                            <span class="text-xs font-semibold uppercase text-brand-300">Birthday</span>
+                            <h4 class="font-serif-heading font-bold text-lg">Grand Balloon Theme Birthday</h4>
+                            <p class="text-xs text-gray-200 mt-1">Luxury Lawn Party in Gurgaon</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div
+                        class="gallery-item decor group relative rounded-2xl overflow-hidden shadow-md bg-white border border-pink-100">
+                        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80"
+                            alt="Reception Entry Tunnel"
+                            class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                            <span class="text-xs font-semibold uppercase text-brand-300">Stage Decor</span>
+                            <h4 class="font-serif-heading font-bold text-lg">Fairy Lights Entry Tunnel</h4>
+                            <p class="text-xs text-gray-200 mt-1">5-Star Hotel Reception Setup</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 5 -->
+                    <div
+                        class="gallery-item wedding group relative rounded-2xl overflow-hidden shadow-md bg-white border border-pink-100">
+                        <img src="https://images.unsplash.com/photo-1544078751-58fee2d8a03b?auto=format&fit=crop&w=800&q=80"
+                            alt="Luxury Ring Ceremony"
+                            class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                            <span class="text-xs font-semibold uppercase text-brand-300">Wedding</span>
+                            <h4 class="font-serif-heading font-bold text-lg">Ethereal Engagement Stage</h4>
+                            <p class="text-xs text-gray-200 mt-1">Resort Celebration in Greater Noida</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 6 -->
+                    <div
+                        class="gallery-item haldi group relative rounded-2xl overflow-hidden shadow-md bg-white border border-pink-100">
+                        <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=800&q=80"
+                            alt="Sangeet Night Setup"
+                            class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                            <span class="text-xs font-semibold uppercase text-brand-300">Haldi & Mehndi</span>
+                            <h4 class="font-serif-heading font-bold text-lg">Cocktail & Sangeet Night</h4>
+                            <p class="text-xs text-gray-200 mt-1">LED Lighting & DJ Stage Setup</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="text-center mt-12">
+                    <button onclick="openBookingModal('Full Portfolio Request')"
+                        class="px-8 py-3.5 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-full shadow-lg transition-all">
+                        View Full Gallery & Request Portfolio PDF
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROCESS TIMELINE SECTION -->
+        <section class="py-20 bg-white border-t border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 section-title">
+                    <span class="text-brand-600 font-semibold uppercase tracking-wider text-xs sm:text-sm block mb-1">
+                        HOW IT WORKS
+                    </span>
+                    <h2 class="font-serif-heading text-3xl sm:text-4xl font-bold text-gray-900">
+                        Our 4-Step <span class="text-brand-600">Event Execution</span>
+                    </h2>
+                    <div class="w-16 h-1 bg-brand-600 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid md:grid-cols-4 gap-8 relative">
+
+                    <!-- Step 01 -->
+                    <div
+                        class="relative flex flex-col items-center text-center p-6 rounded-2xl bg-rose-50/50 border border-pink-100">
+                        <div
+                            class="w-16 h-16 rounded-full bg-brand-600 text-white flex items-center justify-center font-bold text-xl shadow-lg mb-4">
+                            01
+                        </div>
+                        <h3 class="font-serif-heading text-lg font-bold text-gray-900 mb-2">Initial Consultation</h3>
+                        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                            We listen to your ideas, budget requirements, venue preferences, and preferred themes.
+                        </p>
+                    </div>
+
+                    <!-- Step 02 -->
+                    <div
+                        class="relative flex flex-col items-center text-center p-6 rounded-2xl bg-rose-50/50 border border-pink-100">
+                        <div
+                            class="w-16 h-16 rounded-full bg-brand-600 text-white flex items-center justify-center font-bold text-xl shadow-lg mb-4">
+                            02
+                        </div>
+                        <h3 class="font-serif-heading text-lg font-bold text-gray-900 mb-2">Concept & Proposal</h3>
+                        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                            We present customized 3D design concepts, floral options, and transparent pricing packages.
+                        </p>
+                    </div>
+
+                    <!-- Step 03 -->
+                    <div
+                        class="relative flex flex-col items-center text-center p-6 rounded-2xl bg-rose-50/50 border border-pink-100">
+                        <div
+                            class="w-16 h-16 rounded-full bg-brand-600 text-white flex items-center justify-center font-bold text-xl shadow-lg mb-4">
+                            03
+                        </div>
+                        <h3 class="font-serif-heading text-lg font-bold text-gray-900 mb-2">Setup & On-Site Prep</h3>
+                        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                            Our expert crew installs the stage, lighting, floral arrangements, and seating beforehand.
+                        </p>
+                    </div>
+
+                    <!-- Step 04 -->
+                    <div
+                        class="relative flex flex-col items-center text-center p-6 rounded-2xl bg-rose-50/50 border border-pink-100">
+                        <div
+                            class="w-16 h-16 rounded-full bg-brand-600 text-white flex items-center justify-center font-bold text-xl shadow-lg mb-4">
+                            04
+                        </div>
+                        <h3 class="font-serif-heading text-lg font-bold text-gray-900 mb-2">Flawless Celebration</h3>
+                        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                            You sit back and enjoy your special day while our team coordinates every single detail
+                            seamlessly.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS / CLIENT REVIEWS -->
+        <section id="reviews" class="py-20 bg-rose-50/50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 section-title">
+                    <span class="text-brand-600 font-semibold uppercase tracking-wider text-xs sm:text-sm block mb-1">
+                        CLIENTS LOVE
+                    </span>
+                    <h2 class="font-serif-heading text-3xl sm:text-4xl font-bold text-gray-900">
+                        What Our <span class="text-brand-600">Clients Say</span>
+                    </h2>
+                    <div class="w-16 h-1 bg-brand-600 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <!-- Swiper Container -->
+                <div class="swiper testimonials-slider max-w-4xl mx-auto pb-12">
+                    <div class="swiper-wrapper">
+
+                        <!-- Review 1 -->
+                        <div class="swiper-slide px-4">
+                            <div
+                                class="glass-card p-8 rounded-3xl shadow-lg text-center border border-pink-100 relative">
+                                <i class="fa-solid fa-quote-left text-4xl text-brand-300 mb-4 block"></i>
+                                <div class="flex justify-center gap-1 text-amber-400 mb-4">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="text-gray-700 italic text-base sm:text-lg mb-6 leading-relaxed">
+                                    "Aakasheventplanner made our wedding dream come true! The stage decoration and
+                                    floral mandap in Delhi were perfection. Highly professional and friendly team!"
+                                </p>
+                                <h4 class="font-serif-heading font-bold text-gray-900 text-base">- Neha & Rohit Sharma
+                                </h4>
+                                <span class="text-xs text-brand-600">Wedding Ceremony, Chattarpur</span>
+                            </div>
+                        </div>
+
+                        <!-- Review 2 -->
+                        <div class="swiper-slide px-4">
+                            <div
+                                class="glass-card p-8 rounded-3xl shadow-lg text-center border border-pink-100 relative">
+                                <i class="fa-solid fa-quote-left text-4xl text-brand-300 mb-4 block"></i>
+                                <div class="flex justify-center gap-1 text-amber-400 mb-4">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="text-gray-700 italic text-base sm:text-lg mb-6 leading-relaxed">
+                                    "Highly professional team and beautiful decoration. Best event planner in Delhi NCR
+                                    hands down! They handled our Haldi and Mehndi with so much color and enthusiasm."
+                                </p>
+                                <h4 class="font-serif-heading font-bold text-gray-900 text-base">- Anjali Mehta</h4>
+                                <span class="text-xs text-brand-600">Haldi & Sangeet Function</span>
+                            </div>
+                        </div>
+
+                        <!-- Review 3 -->
+                        <div class="swiper-slide px-4">
+                            <div
+                                class="glass-card p-8 rounded-3xl shadow-lg text-center border border-pink-100 relative">
+                                <i class="fa-solid fa-quote-left text-4xl text-brand-300 mb-4 block"></i>
+                                <div class="flex justify-center gap-1 text-amber-400 mb-4">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="text-gray-700 italic text-base sm:text-lg mb-6 leading-relaxed">
+                                    "From start to end, everything was handled so smoothly. Thank you for making our
+                                    25th anniversary event truly memorable. Everyone loved the ambiance!"
+                                </p>
+                                <h4 class="font-serif-heading font-bold text-gray-900 text-base">- Karan & Smita
+                                    Malhotra</h4>
+                                <span class="text-xs text-brand-600">25th Anniversary Gala, Faridabad</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Pagination & Navigation -->
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRICING / PACKAGES -->
+        <section id="packages" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 section-title">
+                    <span class="text-brand-600 font-semibold uppercase tracking-wider text-xs sm:text-sm block mb-1">
+                        TRANSPARENT PACKAGES
+                    </span>
+                    <h2 class="font-serif-heading text-3xl sm:text-4xl font-bold text-gray-900">
+                        Designed For Every <span class="text-brand-600">Celebration</span>
+                    </h2>
+                    <p class="text-gray-600 text-xs sm:text-sm mt-2">Custom packages available based on venue size and
+                        guest count</p>
+                    <div class="w-16 h-1 bg-brand-600 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid lg:grid-cols-3 gap-8 items-stretch">
+
+                    <!-- Silver Package -->
+                    <div
+                        class="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between">
+                        <div>
+                            <span
+                                class="inline-block px-3 py-1 rounded-full bg-gray-100 text-gray-700 text-xs font-bold uppercase tracking-wider mb-4">Silver
+                                Sparkle</span>
+                            <h3 class="font-serif-heading text-2xl font-bold text-gray-900">Intimate Celebration</h3>
+                            <p class="text-xs text-gray-500 mt-1 mb-6">Ideal for birthdays, baby showers & home
+                                functions</p>
+
+                            <ul class="space-y-3 text-sm text-gray-600 mb-8">
+                                <li class="flex items-center gap-3"><i
+                                        class="fa-solid fa-circle-check text-brand-600"></i> Theme Backdrop Setup</li>
+                                <li class="flex items-center gap-3"><i
+                                        class="fa-solid fa-circle-check text-brand-600"></i> Balloon & LED Arch Decor
+                                </li>
+                                <li class="flex items-center gap-3"><i
+                                        class="fa-solid fa-circle-check text-brand-600"></i> Welcome Board & Entrance
+                                    Accent</li>
+                                <li class="flex items-center gap-3"><i
+                                        class="fa-solid fa-circle-check text-brand-600"></i> Cake Table Styling</li>
+                                <li class="flex items-center gap-3 text-gray-400"><i
+                                        class="fa-solid fa-circle-xmark"></i> Real Flower Mandap Setup</li>
+                            </ul>
+                        </div>
+                        <button onclick="openBookingModal('Silver Sparkle Package')"
+                            class="w-full py-3 border-2 border-brand-600 text-brand-600 hover:bg-brand-600 hover:text-white font-bold rounded-full transition-all">
+                            Get Custom Quote
+                        </button>
+                    </div>
+
+                    <!-- Gold Package (Highlighted) -->
+                    <div
+                        class="rounded-3xl border-2 border-brand-600 bg-gradient-to-b from-rose-50/80 to-white p-8 shadow-2xl transition-all flex flex-col justify-between relative transform lg:-translate-y-3">
+                        <div
+                            class="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-600 text-white text-xs font-extrabold uppercase px-4 py-1.5 rounded-full shadow-md">
+                            MOST POPULAR CHOICE
+                        </div>
+                        <div>
+                            <span
+                                class="inline-block px-3 py-1 rounded-full bg-brand-100 text-brand-700 text-xs font-bold uppercase tracking-wider mb-4 mt-2">Gold
+                                Elegance</span>
+                            <h3 class="font-serif-heading text-2xl font-bold text-gray-900">Wedding & Ring Ceremony</h3>
+                            <p class="text-xs text-gray-500 mt-1 mb-6">Complete luxury decor for 200+ guests</p>
+
+                            <ul class="space-y-3 text-sm text-gray-700 mb-8 font-medium">
+                                <li class="flex items-center gap-3"><i
+                                        class="fa-solid fa-circle-check text-brand-600"></i> Royal Designer Mandap Decor
+                                </li>
+                                <li class="flex items-center gap-3"><i
+                                        class="fa-solid fa-circle-check text-brand-600"></i> Grand Stage Floral Backdrop
+                                </li>
+                                <li class="flex items-center gap-3"><i
+                                        class="fa-solid fa-circle-check text-brand-600"></i> Illuminated Tunnel Entry
+                                    Arc</li>
+                                <li class="flex items-center gap-3"><i
+                                        class="fa-solid fa-circle-check text-brand-600"></i> Seating & Sofa Furniture
+                                    Setup</li>
+                                <li class="flex items-center gap-3"><i
+                                        class="fa-solid fa-circle-check text-brand-600"></i> Professional On-Site Event
+                                    Coordinator</li>
+                            </ul>
+                        </div>
+                        <button onclick="openBookingModal('Gold Elegance Package')"
+                            class="w-full py-3.5 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-full shadow-lg shadow-brand-600/30 transition-all">
+                            Book Gold Package
+                        </button>
+                    </div>
+
+                    <!-- Platinum Package -->
+                    <div
+                        class="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between">
+                        <div>
+                            <span
+                                class="inline-block px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold uppercase tracking-wider mb-4">Platinum
+                                Royal</span>
+                            <h3 class="font-serif-heading text-2xl font-bold text-gray-900">Grand Destination Luxury
+                            </h3>
+                            <p class="text-xs text-gray-500 mt-1 mb-6">Full multi-day wedding management</p>
+
+                            <ul class="space-y-3 text-sm text-gray-600 mb-8">
+                                <li class="flex items-center gap-3"><i
+                                        class="fa-solid fa-circle-check text-brand-600"></i> Multi-Day Events (Haldi,
+                                    Sangeet, Wedding)</li>
+                                <li class="flex items-center gap-3"><i
+                                        class="fa-solid fa-circle-check text-brand-600"></i> Import Floral & Chandelier
+                                    Lighting</li>
+                                <li class="flex items-center gap-3"><i
+                                        class="fa-solid fa-circle-check text-brand-600"></i> Artist, Catering & DJ
+                                    Coordination</li>
+                                <li class="flex items-center gap-3"><i
+                                        class="fa-solid fa-circle-check text-brand-600"></i> VIP Guest Hospitality
+                                    Management</li>
+                                <li class="flex items-center gap-3"><i
+                                        class="fa-solid fa-circle-check text-brand-600"></i> Drone & Cinematic
+                                    Photo/Video Coordination</li>
+                            </ul>
+                        </div>
+                        <button onclick="openBookingModal('Platinum Royal Package')"
+                            class="w-full py-3 border-2 border-brand-600 text-brand-600 hover:bg-brand-600 hover:text-white font-bold rounded-full transition-all">
+                            Inquire Platinum Luxury
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section id="faq" class="py-20 bg-rose-50/30">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 section-title">
+                    <span class="text-brand-600 font-semibold uppercase tracking-wider text-xs sm:text-sm block mb-1">
+                        FREQUENTLY ASKED QUESTIONS
+                    </span>
+                    <h2 class="font-serif-heading text-3xl sm:text-4xl font-bold text-gray-900">
+                        Got Questions? <span class="text-brand-600">We Have Answers</span>
+                    </h2>
+                    <div class="w-16 h-1 bg-brand-600 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <div class="space-y-4" id="faq-accordion">
+
+                    <!-- Item 1 -->
+                    <div class="faq-item rounded-2xl bg-white border border-pink-100 overflow-hidden shadow-sm">
+                        <button
+                            class="faq-toggle w-full p-6 text-left flex justify-between items-center font-bold text-gray-900 hover:text-brand-600 transition-colors focus:outline-none">
+                            <span>How early should we book our wedding or event with Aakasheventplanner?</span>
+                            <i class="fa-solid fa-chevron-down text-brand-600 transform transition-transform"></i>
+                        </button>
+                        <div
+                            class="faq-content hidden px-6 pb-6 text-sm text-gray-600 leading-relaxed border-t border-gray-50 pt-3">
+                            We recommend booking at least 2 to 4 weeks in advance for birthday celebrations and 2 to 6
+                            months in advance for weddings and major multi-day events to secure top venues and floral
+                            arrangements.
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="faq-item rounded-2xl bg-white border border-pink-100 overflow-hidden shadow-sm">
+                        <button
+                            class="faq-toggle w-full p-6 text-left flex justify-between items-center font-bold text-gray-900 hover:text-brand-600 transition-colors focus:outline-none">
+                            <span>Which locations in Delhi NCR do you serve?</span>
+                            <i class="fa-solid fa-chevron-down text-brand-600 transform transition-transform"></i>
+                        </button>
+                        <div
+                            class="faq-content hidden px-6 pb-6 text-sm text-gray-600 leading-relaxed border-t border-gray-50 pt-3">
+                            We serve all areas across Delhi NCR including Faridabad, Gurgaon, Noida, Greater Noida,
+                            Ghaziabad, South Delhi, and nearby destination wedding resorts in Rajasthan and Haryana.
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="faq-item rounded-2xl bg-white border border-pink-100 overflow-hidden shadow-sm">
+                        <button
+                            class="faq-toggle w-full p-6 text-left flex justify-between items-center font-bold text-gray-900 hover:text-brand-600 transition-colors focus:outline-none">
+                            <span>Can you customize the decor based on our specific budget?</span>
+                            <i class="fa-solid fa-chevron-down text-brand-600 transform transition-transform"></i>
+                        </button>
+                        <div
+                            class="faq-content hidden px-6 pb-6 text-sm text-gray-600 leading-relaxed border-t border-gray-50 pt-3">
+                            Yes, absolutely! We specialize in tailored event decor setups. We work closely with you to
+                            craft a stunning design that fits your financial expectations without compromising on
+                            aesthetics.
+                        </div>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="faq-item rounded-2xl bg-white border border-pink-100 overflow-hidden shadow-sm">
+                        <button
+                            class="faq-toggle w-full p-6 text-left flex justify-between items-center font-bold text-gray-900 hover:text-brand-600 transition-colors focus:outline-none">
+                            <span>Do you handle catering, DJ sound, and entertainment as well?</span>
+                            <i class="fa-solid fa-chevron-down text-brand-600 transform transition-transform"></i>
+                        </button>
+                        <div
+                            class="faq-content hidden px-6 pb-6 text-sm text-gray-600 leading-relaxed border-t border-gray-50 pt-3">
+                            Yes, we provide end-to-end event solutions including verified catering partners,
+                            professional DJ & sound setups, photography/videography teams, and live artists.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- FINAL CTA CONVERSION BANNER -->
+        <section
+            class="py-20 bg-gradient-to-r from-gray-900 via-brand-900 to-gray-900 text-white relative overflow-hidden">
+            <!-- Ambient Light Overlay -->
+            <div
+                class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-brand-600/20 via-transparent to-transparent pointer-events-none">
+            </div>
+
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                <span class="font-handwriting text-amber-300 text-2xl sm:text-3xl block mb-2">Let's Plan Your
+                    Event</span>
+                <h2 class="font-serif-heading text-3xl sm:text-5xl font-extrabold tracking-tight mb-6">
+                    Ready To Plan Your <span class="text-brand-400">Dream Event?</span>
+                </h2>
+                <p class="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto mb-10 font-light">
+                    Contact our event planning specialists today for a free consultation and customized quote.
+                </p>
+
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="tel:+918860721220"
+                        class="w-full sm:w-auto px-8 py-4 bg-white text-brand-900 hover:bg-rose-100 font-extrabold rounded-full shadow-2xl flex items-center justify-center gap-3 text-lg transition-all hover:scale-105">
+                        <i class="fa-solid fa-phone text-brand-600"></i>
+                        <span>+91 88607 21220</span>
+                    </a>
+                    <a href="https://wa.me/918860721220?text=Hi%20Aakasheventplanner,%20I%20want%20to%20plan%20a%20dream%20event!"
+                        target="_blank" rel="noopener"
+                        class="w-full sm:w-auto px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold rounded-full shadow-2xl flex items-center justify-center gap-3 text-lg transition-all hover:scale-105">
+                        <i class="fa-brands fa-whatsapp text-xl"></i>
+                        <span>Chat on WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-950 text-gray-300 pt-16 pb-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+                <!-- Col 1: Brand Info -->
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div
+                            class="w-10 h-10 rounded-full bg-brand-600 flex items-center justify-center text-white font-bold">
+                            <i class="fa-solid fa-crown"></i>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-serif-heading font-bold text-lg text-white">Aakasheventplanner</span>
+                            <span class="font-handwriting text-xs text-brand-400">We Plan, You Celebrate</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-6">
+                        We create unforgettable events with creativity, elegance, and perfection across Delhi, Gurgaon,
+                        Noida, and Faridabad.
+                    </p>
+                    <div class="flex space-x-3">
+                        <a href="#"
+                            class="w-9 h-9 rounded-full bg-gray-800 hover:bg-brand-600 text-white flex items-center justify-center transition-colors"><i
+                                class="fa-brands fa-facebook-f text-sm"></i></a>
+                        <a href="#"
+                            class="w-9 h-9 rounded-full bg-gray-800 hover:bg-brand-600 text-white flex items-center justify-center transition-colors"><i
+                                class="fa-brands fa-instagram text-sm"></i></a>
+                        <a href="#"
+                            class="w-9 h-9 rounded-full bg-gray-800 hover:bg-brand-600 text-white flex items-center justify-center transition-colors"><i
+                                class="fa-brands fa-youtube text-sm"></i></a>
+                        <a href="#"
+                            class="w-9 h-9 rounded-full bg-gray-800 hover:bg-brand-600 text-white flex items-center justify-center transition-colors"><i
+                                class="fa-brands fa-pinterest text-sm"></i></a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Quick Links -->
+                <div>
+                    <h4 class="text-white font-serif-heading font-bold mb-4 text-base">Quick Links</h4>
+                    <ul class="space-y-2 text-xs text-gray-400">
+                        <li><a href="#home" class="hover:text-brand-400 transition-colors">Home</a></li>
+                        <li><a href="#about" class="hover:text-brand-400 transition-colors">About Us</a></li>
+                        <li><a href="#services" class="hover:text-brand-400 transition-colors">Services</a></li>
+                        <li><a href="#gallery" class="hover:text-brand-400 transition-colors">Gallery</a></li>
+                        <li><a href="#packages" class="hover:text-brand-400 transition-colors">Packages</a></li>
+                        <li><a href="#reviews" class="hover:text-brand-400 transition-colors">Reviews</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Our Services -->
+                <div>
+                    <h4 class="text-white font-serif-heading font-bold mb-4 text-base">Our Services</h4>
+                    <ul class="space-y-2 text-xs text-gray-400">
+                        <li><a href="#services" class="hover:text-brand-400 transition-colors">Wedding Planning</a></li>
+                        <li><a href="#services" class="hover:text-brand-400 transition-colors">Birthday Decoration</a>
+                        </li>
+                        <li><a href="#services" class="hover:text-brand-400 transition-colors">Corporate Events</a></li>
+                        <li><a href="#services" class="hover:text-brand-400 transition-colors">Engagement &
+                                Anniversary</a></li>
+                        <li><a href="#services" class="hover:text-brand-400 transition-colors">Haldi & Mehndi Setup</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Contact Info -->
+                <div>
+                    <h4 class="text-white font-serif-heading font-bold mb-4 text-base">Contact Info</h4>
+                    <ul class="space-y-3 text-xs text-gray-400">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot text-brand-500 mt-0.5"></i>
+                            <span>Shop No. 111, Sector 16, Faridabad, Delhi NCR</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-phone text-brand-500"></i>
+                            <a href="tel:+918860721220" class="hover:text-white">+91 88607 21220</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-brand-500"></i>
+                            <a href="mailto:info@aakasheventplanner.com"
+                                class="hover:text-white">info@aakasheventplanner.com</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Bottom Copyright bar -->
+            <div class="pt-8 border-t border-gray-900 text-center md:flex md:justify-between text-xs text-gray-500">
+                <p>&copy; 2026 Aakasheventplanner. All Rights Reserved.</p>
+                <div class="mt-2 md:mt-0 space-x-4">
+                    <a href="#" class="hover:text-gray-400">Privacy Policy</a>
+                    <span>|</span>
+                    <a href="#" class="hover:text-gray-400">Terms & Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOATING CONVERSION BUTTONS -->
+    <div class="fixed bottom-6 right-6 z-40 flex flex-col items-end space-y-3">
+        <!-- Floating WhatsApp Button -->
+        <a href="https://wa.me/918860721220?text=Hi%20Aakasheventplanner,%20I%20want%20to%20book%20an%20event!"
+            target="_blank" rel="noopener" aria-label="Chat on WhatsApp"
+            class="w-14 h-14 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center text-2xl shadow-2xl transition-all hover:scale-110 animate-bounce">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- BOOKING / INQUIRY MODAL POPUP -->
+    <div id="booking-modal"
+        class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div
+            class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl border border-pink-100 max-h-[90vh] overflow-y-auto">
+
+            <button onclick="closeBookingModal()"
+                class="absolute top-4 right-4 w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div
+                    class="w-12 h-12 bg-rose-100 text-brand-600 rounded-full flex items-center justify-center mx-auto mb-2 text-xl font-bold">
+                    <i class="fa-solid fa-calendar-check"></i>
+                </div>
+                <h3 class="font-serif-heading text-2xl font-bold text-gray-900">Book Your Event</h3>
+                <p class="text-xs text-gray-500 mt-1">Fill in the details for a free price quote & consultation</p>
+            </div>
+
+            <form id="booking-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                <!-- Web3Forms Config (Replace YOUR_WEB3FORMS_ACCESS_KEY with your key from web3forms.com) -->
+                <input type="hidden" name="access_key" value="b61c2806-4512-401d-8fca-3a419a3a96c3">
+                <input type="hidden" name="subject" value="New Event Booking Request - Aakasheventplanner">
+                <input type="hidden" name="from_name" value="Aakasheventplanner Website">
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                <!-- Form Status Alert Box -->
+                <div id="form-status" class="hidden text-xs font-semibold p-3.5 rounded-xl transition-all"></div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Your Full Name</label>
+                    <input type="text" name="name" required placeholder="e.g. Rahul Sharma"
+                        class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-600 focus:outline-none text-sm">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Phone Number</label>
+                        <input type="tel" name="phone" required placeholder="+91 98765 43210"
+                            class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-600 focus:outline-none text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Event Type</label>
+                        <select id="modal-service-select" name="service"
+                            class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-600 focus:outline-none text-sm">
+                            <option value="Wedding Planning">Wedding Planning</option>
+                            <option value="Birthday Decoration">Birthday Decoration</option>
+                            <option value="Engagement & Anniversary">Engagement & Anniversary</option>
+                            <option value="Haldi / Mehndi Setup">Haldi / Mehndi Setup</option>
+                            <option value="Corporate Event">Corporate Event</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Estimated Date</label>
+                        <input type="date" name="event_date" required
+                            class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-600 focus:outline-none text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Location / Venue</label>
+                        <input type="text" name="location" placeholder="e.g. Delhi NCR / Faridabad"
+                            class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-600 focus:outline-none text-sm">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Additional Notes</label>
+                    <textarea name="notes" rows="3" placeholder="Tell us about expected guest count or theme ideas..."
+                        class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-600 focus:outline-none text-sm"></textarea>
+                </div>
+
+                <button type="submit" id="submit-btn"
+                    class="w-full py-3.5 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl shadow-lg transition-all text-sm flex items-center justify-center gap-2">
+                    <span id="btn-text">Submit Inquiry Now</span>
+                    <i id="btn-spinner" class="fa-solid fa-circle-notch fa-spin hidden"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // PRELOADER ANIMATION LOGIC
+        window.addEventListener('load', function () {
+            let progress = 0;
+            const bar = document.getElementById('preloader-bar');
+            const percentText = document.getElementById('preloader-percent');
+            const preloader = document.getElementById('preloader');
+
+            const interval = setInterval(() => {
+                progress += Math.floor(Math.random() * 15) + 5;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    bar.style.width = '100%';
+                    percentText.innerText = '100%';
+
+                    setTimeout(() => {
+                        preloader.style.opacity = '0';
+                        preloader.style.visibility = 'hidden';
+                        initGSAPAnimations();
+                    }, 400);
+                } else {
+                    bar.style.width = progress + '%';
+                    percentText.innerText = progress + '%';
+                }
+            }, 60);
+        });
+
+        // THREE.JS ANIMATED 3D BACKGROUND
+        function initThreeJS() {
+            const canvas = document.getElementById('three-canvas');
+            const scene = new THREE.Scene();
+
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 30;
+
+            const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+            // Create 3D floating glowing particles (Rose Gold / Golden Orbs)
+            const particlesCount = 180;
+            const geometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(particlesCount * 3);
+            const colors = new Float32Array(particlesCount * 3);
+
+            const color1 = new THREE.Color('#e11d48'); // Rose
+            const color2 = new THREE.Color('#facc15'); // Gold
+
+            for (let i = 0; i < particlesCount * 3; i += 3) {
+                positions[i] = (Math.random() - 0.5) * 80;
+                positions[i + 1] = (Math.random() - 0.5) * 80;
+                positions[i + 2] = (Math.random() - 0.5) * 50;
+
+                const mixedColor = Math.random() > 0.5 ? color1 : color2;
+                colors[i] = mixedColor.r;
+                colors[i + 1] = mixedColor.g;
+                colors[i + 2] = mixedColor.b;
+            }
+
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+            const material = new THREE.PointsMaterial({
+                size: 0.8,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.6,
+            });
+
+            const particlesMesh = new THREE.Points(geometry, material);
+            scene.add(particlesMesh);
+
+            // Mouse Interaction Parallax
+            let mouseX = 0;
+            let mouseY = 0;
+
+            document.addEventListener('mousemove', (event) => {
+                mouseX = (event.clientX / window.innerWidth - 0.5) * 0.5;
+                mouseY = (event.clientY / window.innerHeight - 0.5) * 0.5;
+            });
+
+            // Render loop
+            function animate() {
+                requestAnimationFrame(animate);
+
+                particlesMesh.rotation.y += 0.001;
+                particlesMesh.rotation.x += 0.0005;
+
+                camera.position.x += (mouseX * 10 - camera.position.x) * 0.05;
+                camera.position.y += (-mouseY * 10 - camera.position.y) * 0.05;
+
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            // Window Resize Handler
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        }
+        initThreeJS();
+
+        // GSAP & SCROLLTRIGGER ENTRANCE ANIMATIONS
+        function initGSAPAnimations() {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Hero section timeline
+            const heroTl = gsap.timeline();
+            heroTl.from('.hero-text-container > *', {
+                y: 30,
+                opacity: 0,
+                duration: 0.8,
+                stagger: 0.15,
+                ease: 'power3.out'
+            }).from('.hero-visual-container', {
+                scale: 0.9,
+                opacity: 0,
+                duration: 1,
+                ease: 'power3.out'
+            }, '-=0.6');
+
+            // Animated Stats Counter
+            const statsSection = document.getElementById('stats-container');
+            if (statsSection) {
+                ScrollTrigger.create({
+                    trigger: statsSection,
+                    start: 'top 80%',
+                    onEnter: () => {
+                        const counters = document.querySelectorAll('.counter');
+                        counters.forEach(counter => {
+                            const target = parseInt(counter.getAttribute('data-target'));
+                            gsap.to(counter, {
+                                innerText: target,
+                                duration: 2,
+                                snap: { innerText: 1 },
+                                ease: 'power2.out'
+                            });
+                        });
+                    }
+                });
+            }
+
+            // Section Titles scroll reveals
+            gsap.utils.toArray('.section-title').forEach(title => {
+                gsap.from(title, {
+                    scrollTrigger: {
+                        trigger: title,
+                        start: 'top 85%'
+                    },
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: 'power3.out'
+                });
+            });
+        }
+
+        // SWIPER TESTIMONIAL SLIDER
+        const testimonialsSwiper = new Swiper('.testimonials-slider', {
+            loop: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            spaceBetween: 30,
+        });
+
+        // GALLERY FILTERING LOGIC
+        const filterBtns = document.querySelectorAll('.gallery-filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('active', 'bg-brand-600', 'text-white');
+                    b.classList.add('bg-white', 'text-gray-700');
+                });
+                btn.classList.add('active', 'bg-brand-600', 'text-white');
+                btn.classList.remove('bg-white', 'text-gray-700');
+
+                const filter = btn.getAttribute('data-filter');
+
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.classList.contains(filter)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // FAQ ACCORDION LOGIC
+        const faqToggles = document.querySelectorAll('.faq-toggle');
+
+        faqToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const content = toggle.nextElementSibling;
+                const icon = toggle.querySelector('i');
+
+                const isOpen = !content.classList.contains('hidden');
+
+                // Close all other faqs
+                document.querySelectorAll('.faq-content').forEach(c => c.classList.add('hidden'));
+                document.querySelectorAll('.faq-toggle i').forEach(i => i.style.transform = 'rotate(0deg)');
+
+                if (!isOpen) {
+                    content.classList.remove('hidden');
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+
+        // MOBILE MENU TOGGLE
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        function closeMobileMenu() {
+            mobileMenu.classList.add('hidden');
+        }
+
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // BOOKING MODAL LOGIC
+        function openBookingModal(serviceName = '') {
+            const modal = document.getElementById('booking-modal');
+            const select = document.getElementById('modal-service-select');
+
+            if (serviceName && select) {
+                for (let i = 0; i < select.options.length; i++) {
+                    if (select.options[i].value.toLowerCase().includes(serviceName.toLowerCase())) {
+                        select.selectedIndex = i;
+                        break;
+                    }
+                }
+            }
+
+            modal.classList.remove('hidden');
+        }
+
+        function closeBookingModal() {
+            document.getElementById('booking-modal').classList.add('hidden');
+        }
+
+        async function handleFormSubmit(e) {
+            e.preventDefault();
+
+            const form = e.target;
+            const submitBtn = document.getElementById('submit-btn');
+            const btnText = document.getElementById('btn-text');
+            const btnSpinner = document.getElementById('btn-spinner');
+            const statusDiv = document.getElementById('form-status');
+
+            // Set loading state
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+            btnText.innerText = 'Sending Inquiry...';
+            btnSpinner.classList.remove('hidden');
+            statusDiv.classList.add('hidden');
+
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    statusDiv.className = 'text-xs font-semibold p-3.5 rounded-xl bg-emerald-100 text-emerald-800 border border-emerald-200 block text-center mb-2';
+                    statusDiv.innerHTML = '<i class="fa-solid fa-circle-check mr-1 text-emerald-600"></i> Thank you! Your booking request has been submitted successfully. We will call you back shortly.';
+                    form.reset();
+
+                    // Auto-close modal after 4 seconds
+                    setTimeout(() => {
+                        closeBookingModal();
+                        statusDiv.classList.add('hidden');
+                    }, 4000);
+                } else {
+                    throw new Error(result.message || 'Something went wrong. Please try again.');
+                }
+            } catch (error) {
+                statusDiv.className = 'text-xs font-semibold p-3.5 rounded-xl bg-rose-100 text-rose-800 border border-rose-200 block text-center mb-2';
+                statusDiv.innerHTML = '<i class="fa-solid fa-triangle-exclamation mr-1 text-rose-600"></i> ' + (error.message || 'Submission failed. Please call us directly.');
+            } finally {
+                // Reset button state
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+                btnText.innerText = 'Submit Inquiry Now';
+                btnSpinner.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+
+</html>
